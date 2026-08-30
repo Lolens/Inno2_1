@@ -91,9 +91,7 @@ public class TextPartImpl implements TextPart {
     StringBuilder sb = new StringBuilder();
     String indentStr = "  ".repeat(indent);
 
-    sb.append(labelFor(type))
-        .append("\n")
-        .append(indentStr)
+    sb.append(indentStr)
         .append(type)
         .append(": ")
         .append("'").append(contents).append("'");
@@ -126,17 +124,6 @@ public class TextPartImpl implements TextPart {
       case LEXEME -> 3;
       case WORD -> 4;
       case CHARACTER -> 5;
-    };
-  }
-
-  private static String labelFor(TextPartType type) {
-    return switch (type) {
-      case TEXT -> " TEXT";
-      case PARAGRAPH -> "   PARAGRAPH";
-      case SENTENCE -> "     SENTENCE";
-      case LEXEME -> "       LEXEME";
-      case WORD -> "         WORD";
-      case CHARACTER -> "           CHARACTER";
     };
   }
 }
