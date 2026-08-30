@@ -10,8 +10,8 @@ public class WordTextPartTest {
 
   @Test
   void addChildShouldSetParentReference() {
-    TextPart word = new WordTextPart("hi");
-    TextPart ch = new CharacterTextPart("h");
+    TextPart word = new TextPartImpl(TextPartType.WORD, "hi");
+    TextPart ch = new TextPartImpl(TextPartType.CHARACTER, "h");
 
     word.addChild(ch);
 
@@ -21,9 +21,9 @@ public class WordTextPartTest {
 
   @Test
   void removeChildShouldDetachChildFromChildrenList() {
-    TextPart word = new WordTextPart("hi");
-    TextPart ch1 = new CharacterTextPart("h");
-    TextPart ch2 = new CharacterTextPart("i");
+    TextPart word = new TextPartImpl(TextPartType.WORD, "hi");
+    TextPart ch1 = new TextPartImpl(TextPartType.CHARACTER, "h");
+    TextPart ch2 = new TextPartImpl(TextPartType.CHARACTER, "i");
     word.addChild(ch1);
     word.addChild(ch2);
 
@@ -35,7 +35,7 @@ public class WordTextPartTest {
 
   @Test
   void typeCheckDefaultMethodsShouldReflectActualType() {
-    TextPart character = new CharacterTextPart("x");
+    TextPart character = new TextPartImpl(TextPartType.CHARACTER, "x");
 
     assertTrue(character.isCharacter());
     assertFalse(character.isWord());
@@ -44,7 +44,7 @@ public class WordTextPartTest {
 
   @Test
   void isDeeperThanShouldCompareByDepth() {
-    TextPart character = new CharacterTextPart("x");
+    TextPart character = new TextPartImpl(TextPartType.CHARACTER, "x");
 
     assertTrue(character.isDeeperThan(TextPartType.WORD));
     assertFalse(character.isDeeperThan(TextPartType.CHARACTER));
@@ -52,8 +52,9 @@ public class WordTextPartTest {
 
   @Test
   void asCharShouldReturnFirstCharacterOfContents() {
-    CharacterTextPart part = new CharacterTextPart("Z");
+    TextPartImpl part = new TextPartImpl(TextPartType.CHARACTER, "Z");
+    char ch = part.getContents().charAt(0);
 
-    assertEquals('Z', part.asChar());
+    assertEquals('Z', ch);
   }
 }
