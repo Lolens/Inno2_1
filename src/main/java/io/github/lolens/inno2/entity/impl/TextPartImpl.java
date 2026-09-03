@@ -9,6 +9,8 @@ import java.util.List;
 
 public class TextPartImpl implements TextPart {
 
+  // NOTE: At the end of this file you can see toString() tree output of the one of the example paragraphs.
+
   private final TextPartType type;
   private String contents;
 
@@ -130,4 +132,191 @@ public class TextPartImpl implements TextPart {
       case CHARACTER -> 5;
     };
   }
+
+  /*
+
+  Every level of the composite is a self-sufficient object,
+  that can be represented as text even if every other child is stripped away.
+
+  This way every part of the composite can be represented as some meaningful String
+  and also may be a part of a greater TextPart
+
+  PARAGRAPH: 'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.' {
+    SENTENCE: 'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.' {
+      LEXEME: 'It' {
+        WORD: 'It' {
+          CHARACTER: 'I' [LEAF]
+          CHARACTER: 't' [LEAF]
+        }
+      }
+      LEXEME: 'has' {
+        WORD: 'has' {
+          CHARACTER: 'h' [LEAF]
+          CHARACTER: 'a' [LEAF]
+          CHARACTER: 's' [LEAF]
+        }
+      }
+      LEXEME: 'survived' {
+        WORD: 'survived' {
+          CHARACTER: 's' [LEAF]
+          CHARACTER: 'u' [LEAF]
+          CHARACTER: 'r' [LEAF]
+          CHARACTER: 'v' [LEAF]
+          CHARACTER: 'i' [LEAF]
+          CHARACTER: 'v' [LEAF]
+          CHARACTER: 'e' [LEAF]
+          CHARACTER: 'd' [LEAF]
+        }
+      }
+      LEXEME: 'not' {
+        WORD: 'not' {
+          CHARACTER: 'n' [LEAF]
+          CHARACTER: 'o' [LEAF]
+          CHARACTER: 't' [LEAF]
+        }
+      }
+      LEXEME: 'only' {
+        WORD: 'only' {
+          CHARACTER: 'o' [LEAF]
+          CHARACTER: 'n' [LEAF]
+          CHARACTER: 'l' [LEAF]
+          CHARACTER: 'y' [LEAF]
+        }
+      }
+      LEXEME: 'five' {
+        WORD: 'five' {
+          CHARACTER: 'f' [LEAF]
+          CHARACTER: 'i' [LEAF]
+          CHARACTER: 'v' [LEAF]
+          CHARACTER: 'e' [LEAF]
+        }
+      }
+      LEXEME: 'centuries,' {
+        WORD: 'centuries' {
+          CHARACTER: 'c' [LEAF]
+          CHARACTER: 'e' [LEAF]
+          CHARACTER: 'n' [LEAF]
+          CHARACTER: 't' [LEAF]
+          CHARACTER: 'u' [LEAF]
+          CHARACTER: 'r' [LEAF]
+          CHARACTER: 'i' [LEAF]
+          CHARACTER: 'e' [LEAF]
+          CHARACTER: 's' [LEAF]
+        }
+        CHARACTER: ',' [LEAF]
+      }
+      LEXEME: 'but' {
+        WORD: 'but' {
+          CHARACTER: 'b' [LEAF]
+          CHARACTER: 'u' [LEAF]
+          CHARACTER: 't' [LEAF]
+        }
+      }
+      LEXEME: 'also' {
+        WORD: 'also' {
+          CHARACTER: 'a' [LEAF]
+          CHARACTER: 'l' [LEAF]
+          CHARACTER: 's' [LEAF]
+          CHARACTER: 'o' [LEAF]
+        }
+      }
+      LEXEME: 'the' {
+        WORD: 'the' {
+          CHARACTER: 't' [LEAF]
+          CHARACTER: 'h' [LEAF]
+          CHARACTER: 'e' [LEAF]
+        }
+      }
+      LEXEME: 'leap' {
+        WORD: 'leap' {
+          CHARACTER: 'l' [LEAF]
+          CHARACTER: 'e' [LEAF]
+          CHARACTER: 'a' [LEAF]
+          CHARACTER: 'p' [LEAF]
+        }
+      }
+      LEXEME: 'into' {
+        WORD: 'into' {
+          CHARACTER: 'i' [LEAF]
+          CHARACTER: 'n' [LEAF]
+          CHARACTER: 't' [LEAF]
+          CHARACTER: 'o' [LEAF]
+        }
+      }
+      LEXEME: 'electronic' {
+        WORD: 'electronic' {
+          CHARACTER: 'e' [LEAF]
+          CHARACTER: 'l' [LEAF]
+          CHARACTER: 'e' [LEAF]
+          CHARACTER: 'c' [LEAF]
+          CHARACTER: 't' [LEAF]
+          CHARACTER: 'r' [LEAF]
+          CHARACTER: 'o' [LEAF]
+          CHARACTER: 'n' [LEAF]
+          CHARACTER: 'i' [LEAF]
+          CHARACTER: 'c' [LEAF]
+        }
+      }
+      LEXEME: 'typesetting,' {
+        WORD: 'typesetting' {
+          CHARACTER: 't' [LEAF]
+          CHARACTER: 'y' [LEAF]
+          CHARACTER: 'p' [LEAF]
+          CHARACTER: 'e' [LEAF]
+          CHARACTER: 's' [LEAF]
+          CHARACTER: 'e' [LEAF]
+          CHARACTER: 't' [LEAF]
+          CHARACTER: 't' [LEAF]
+          CHARACTER: 'i' [LEAF]
+          CHARACTER: 'n' [LEAF]
+          CHARACTER: 'g' [LEAF]
+        }
+        CHARACTER: ',' [LEAF]
+      }
+      LEXEME: 'remaining' {
+        WORD: 'remaining' {
+          CHARACTER: 'r' [LEAF]
+          CHARACTER: 'e' [LEAF]
+          CHARACTER: 'm' [LEAF]
+          CHARACTER: 'a' [LEAF]
+          CHARACTER: 'i' [LEAF]
+          CHARACTER: 'n' [LEAF]
+          CHARACTER: 'i' [LEAF]
+          CHARACTER: 'n' [LEAF]
+          CHARACTER: 'g' [LEAF]
+        }
+      }
+      LEXEME: 'essentially' {
+        WORD: 'essentially' {
+          CHARACTER: 'e' [LEAF]
+          CHARACTER: 's' [LEAF]
+          CHARACTER: 's' [LEAF]
+          CHARACTER: 'e' [LEAF]
+          CHARACTER: 'n' [LEAF]
+          CHARACTER: 't' [LEAF]
+          CHARACTER: 'i' [LEAF]
+          CHARACTER: 'a' [LEAF]
+          CHARACTER: 'l' [LEAF]
+          CHARACTER: 'l' [LEAF]
+          CHARACTER: 'y' [LEAF]
+        }
+      }
+      LEXEME: 'unchanged.' {
+        WORD: 'unchanged' {
+          CHARACTER: 'u' [LEAF]
+          CHARACTER: 'n' [LEAF]
+          CHARACTER: 'c' [LEAF]
+          CHARACTER: 'h' [LEAF]
+          CHARACTER: 'a' [LEAF]
+          CHARACTER: 'n' [LEAF]
+          CHARACTER: 'g' [LEAF]
+          CHARACTER: 'e' [LEAF]
+          CHARACTER: 'd' [LEAF]
+        }
+        CHARACTER: '.' [LEAF]
+      }
+    }
+
+   */
+
 }
