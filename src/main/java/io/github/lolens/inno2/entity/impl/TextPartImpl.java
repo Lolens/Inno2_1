@@ -84,10 +84,14 @@ public class TextPartImpl implements TextPart {
 
   @Override
   public String toString() {
-    return toString(baseIndentFor(type));
+    return buildTreeString();
   }
 
-  public String toString(int indent) {
+  public String buildTreeString() {
+    return getAsStringTree(baseIndentFor(type));
+  }
+
+  private String getAsStringTree(int indent) {
     StringBuilder sb = new StringBuilder();
     String indentStr = "  ".repeat(indent);
 
@@ -100,7 +104,7 @@ public class TextPartImpl implements TextPart {
       sb.append(" {\n");
       for (TextPart child : children) {
         if (child instanceof TextPartImpl impl) {
-          sb.append(impl.toString(indent + 1));
+          sb.append(impl.getAsStringTree(indent + 1));
         } else {
           sb.append("  ".repeat(indent + 1))
               .append(child)
